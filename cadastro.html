@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Voluntário - ONG Casa de Maria</title>
+  <meta name="description" content="Casa de Maria - ONG que apoia famílias em vulnerabilidade com projetos sociais, doações e voluntariado.">
+  <link rel="icon" href="imagens/logo.jpg" type="image/x-icon">
+
+  <!-- Mantendo os mesmos CSS do index -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Apenas estilo do formulário -->
+  <style>
+    body {
+      background-color: #e5eee9;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 180px);
+      padding: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #efd65a;
+      color: rgba(42, 108, 240, 0.93);
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #f29a35ef;
+    }
+
+    #feedback {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* empurra o footer pra baixo */
+}
+
+footer {
+  background-color: #085179;
+  text-align: center;
+  padding: 20px 0;
+  color: #f4f6f8;
+  font-size: 16px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header class="card">
+    <h1>Cadastro de Voluntários</h1>
+    <nav>
+      <a href="index.html" class="btn">INÍCIO</a>
+      <a href="projetos.html" class="btn">PROJETOS</a>
+      <a href="cadastro.html" class="active btn">QUERO COLABORAR</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="cadastro-form" novalidate>
+      <label>Nome completo:
+        <input type="text" name="nome" required>
+      </label>
+
+      <label>E-mail:
+        <input type="email" name="email" required>
+      </label>
+
+      <label>CPF:
+        <input id="cpf" type="text" name="cpf" required placeholder="000.000.000-00">
+      </label>
+
+      <label>Telefone:
+        <input id="telefone" type="tel" name="telefone" required placeholder="(00) 00000-0000">
+      </label>
+
+      <label>Data de nascimento:
+        <input type="date" name="nasc" required>
+      </label>
+
+      <label>CEP:
+        <input id="cep" type="text" name="cep" required placeholder="00000-000">
+      </label>
+
+      <label>Endereço:
+        <input type="text" name="endereco" required>
+      </label>
+
+      <label>Cidade:
+        <input type="text" name="cidade" required>
+      </label>
+
+      <label>Estado:
+        <select name="estado" required>
+          <option value="">Selecione</option>
+          <option value="SP">SP</option>
+          <option value="RJ">RJ</option>
+          <option value="MG">MG</option>
+          <option value="Outros">Outros</option>
+        </select>
+      </label>
+
+      <button type="submit">ENVIAR CADASTRO</button>
+      <div id="feedback" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <footer>
+    <p> &copy; 2025 Casa de Maria - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const cpfInput = document.getElementById('cpf');
+    const telInput = document.getElementById('telefone');
+    const cepInput = document.getElementById('cep');
+
+    cpfInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, '');
+      if(value.length > 11) value = value.slice(0,11);
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      this.value = value;
+    });
+
+    telInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, '');
+      if(value.length > 11) value = value.slice(0,11);
+      value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+      value = value.replace(/(\d{5})(\d)/, '$1-$2');
+      this.value = value;
+    });
+
+    cepInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, '');
+      if(value.length > 8) value = value.slice(0,8);
+      value = value.replace(/(\d{5})(\d)/, '$1-$2');
+      this.value = value;
+    });
+
+    const form = document.getElementById('cadastro-form');
+    const fb = document.getElementById('feedback');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        fb.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+        fb.style.color = 'red';
+        return;
+      }
+      fb.textContent = 'Cadastro enviado com sucesso! 💛 Obrigada por fazer parte da Casa de Maria.';
+      fb.style.color = 'green';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
