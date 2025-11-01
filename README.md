@@ -31,16 +31,19 @@ ONG-CasaDeMaria/
 
 ### Página Inicial
 ![Página Inicial](imagens/inicio.1.png)  
+
 ![Página Inicial](imagens/inicio.2.png)  
 A página de boas-vindas apresenta a ONG, sua missão, visão, valores e informações de contato.
 
 ### Projetos
-![Projetos](imagens/projetos.1.png)  
-![Projetos](imagens/projetos.2.png)  
+![Projetos](imagens/projeto.1.png)  
+
+![Projetos](imagens/projeto.2.png)  
 Sistema de **cards responsivos** exibindo os projetos sociais da ONG.
 
 ### Cadastro de Voluntários
 ![Cadastro](imagens/cadastro.png)  
+
 ![Cadastro](imagens/cadastro.2.png)  
 Formulário estilizado, validado e centralizado, para cadastro de voluntários.
 
