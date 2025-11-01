@@ -1,0 +1,17 @@
+h1, h2, h3, h4 {
+  color: var(--cor-primaria);
+  margin-bottom: var(--esp-2);
+}
+
+p {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
